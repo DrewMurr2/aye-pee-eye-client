@@ -22,10 +22,10 @@ function ayePeeEye(myBaseUrl) {
     this.createPostAPI = (extension) => api({
         url: baseUrl + extension
     })
-    this.isloaded = false
+    isloaded = false
     let functions_to_run_onload = []
     this.onload = (new_function) => {
-        if (this.isloaded)
+        if (isloaded)
             new_function()
         else
             functions_to_run_onload.push(new_function)
