@@ -1,4 +1,4 @@
-let ayePeeEye = function (myBaseUrl) {
+function ayePeeEye(myBaseUrl) {
     let headers = {}
     let baseUrl = myBaseUrl
     let api = function (options) {
@@ -59,7 +59,7 @@ let ayePeeEye = function (myBaseUrl) {
 
 function initAyePeeEye() {
     let apiUrl = document.getElementById("aye-pee-eye").getAttribute("myApi")
-    ayePeeEye = ayePeeEye(apiUrl)
+    ayePeeEye = new ayePeeEye(apiUrl)
 }
 
 initAyePeeEye()
