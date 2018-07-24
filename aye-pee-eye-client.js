@@ -22,6 +22,14 @@ function ayePeeEye(myBaseUrl) {
     this.createPostAPI = (extension) => api({
         url: baseUrl + extension
     })
+    this.isloaded = false
+    let functions_to_run_onload = []
+    this.onload = (new_function) => {
+        if (this.isloaded)
+            new_function()
+        else
+            functions_to_run_onload.push(new_function)
+    }
     this.apis = {}
     this.instantiateApis = (array_of_api_endpoints) => {
         let remove_empty_strings = (arr) => {
@@ -52,7 +60,13 @@ function ayePeeEye(myBaseUrl) {
 
     this.getMethods = this.createPostAPI('/_getMethods_');
 
-    this.getMethods().then(methods => this.instantiateApis(methods));
+    let run_functions_onload = () => {
+        isloaded = true
+        functions_to_run_onload.forEach(func => func())
+    }
+    this.getMethods()
+        .then(methods => this.instantiateApis(methods))
+        .then(undef => run_functions_onload());
 
     return this
 }
