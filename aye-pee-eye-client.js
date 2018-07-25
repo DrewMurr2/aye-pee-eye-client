@@ -19,6 +19,7 @@ function ayePeeEye(myBaseUrl) {
             })
         }
     }
+    console.log('ayePeeEye v1.27')
     this.createPostAPI = (extension) => api({
         url: baseUrl + extension
     })
