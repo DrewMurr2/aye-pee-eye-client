@@ -12,8 +12,8 @@ function ayePeeEye(myBaseUrl) {
                     }
                 };
                 xhttp.open("POST", options.url, true);
-                if (this.headers)
-                    for (prop in this.headers) xhttp.setRequestHeader(prop, this.headers[prop])
+                if (ayePeeEye.headers)
+                    for (prop in ayePeeEye.headers) xhttp.setRequestHeader(prop, ayePeeEye.headers[prop])
                 xhttp.setRequestHeader('Content-Type', 'application/json')
                 xhttp.send(body ? JSON.stringify(body) : undefined);
             })
