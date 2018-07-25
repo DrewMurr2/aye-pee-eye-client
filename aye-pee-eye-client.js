@@ -1,5 +1,5 @@
 function ayePeeEye(myBaseUrl) {
-    let headers = {}
+    this.headers = {}
     let baseUrl = myBaseUrl
     let api = function (options) {
         return function (body) {
