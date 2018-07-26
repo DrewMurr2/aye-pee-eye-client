@@ -14,13 +14,13 @@ function ayePeeEye(myBaseUrl) {
                 xhttp.open("POST", options.url, true);
                 if (ayePeeEye.headers)
                     for (prop in ayePeeEye.headers) xhttp.setRequestHeader(prop, ayePeeEye.headers[prop])
-                body && body instanceof FormData ? xhttp.setRequestHeader('Content-Type', 'multipart/form-data;boundary=------WebKitFormBoundaryxt5NlHoHARst6Pb4') :
+                if (!(body instanceof FormData))
                     xhttp.setRequestHeader('Content-Type', 'application/json')
                 xhttp.send(body ? body instanceof FormData ? body : JSON.stringify(body) : undefined);
             })
         }
     }
-    console.log('ayePeeEye v1.29')
+    console.log('ayePeeEye v1.30')
     this.createPostAPI = (extension) => api({
         url: baseUrl + extension
     })
