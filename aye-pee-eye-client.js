@@ -14,12 +14,13 @@ function ayePeeEye(myBaseUrl) {
                 xhttp.open("POST", options.url, true);
                 if (ayePeeEye.headers)
                     for (prop in ayePeeEye.headers) xhttp.setRequestHeader(prop, ayePeeEye.headers[prop])
-                xhttp.setRequestHeader('Content-Type', 'application/json')
-                xhttp.send(body ? JSON.stringify(body) : undefined);
+                body && body instanceof FormData ? xhttp.setRequestHeader('Content-Type', 'multipart/form-data') :
+                    xhttp.setRequestHeader('Content-Type', 'application/json')
+                xhttp.send(body ? body instanceof FormData ? body : JSON.stringify(body) : undefined);
             })
         }
     }
-    console.log('ayePeeEye v1.27')
+    console.log('ayePeeEye v1.28')
     this.createPostAPI = (extension) => api({
         url: baseUrl + extension
     })
@@ -33,13 +34,7 @@ function ayePeeEye(myBaseUrl) {
     }
     this.apis = {}
     this.instantiateApis = (array_of_api_endpoints) => {
-        let remove_empty_strings = (arr) => {
-            let newArr = []
-            arr.forEach(arrEl => {
-                if (arrEl !== '') newArr.push(arrEl)
-            })
-            return newArr
-        }
+        let remove_empty_strings = (arr) => arr.filter(r => r !== '')
 
         array_of_api_endpoints = remove_empty_strings(array_of_api_endpoints)
 
